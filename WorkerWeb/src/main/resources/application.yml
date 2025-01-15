@@ -1,3 +1,15 @@
+# 스프링 기본설정
 spring:
   application:
     name: WorkerWeb
+
+
+# ThymeLeaf 설정
+  thymeleaf:
+    check-template-location: true
+    prefix: classpath:templates/
+    suffix: .html
+# 정적파일 위치 설정
+  mvc:
+    static-path-pattern: classpath:static/
+          

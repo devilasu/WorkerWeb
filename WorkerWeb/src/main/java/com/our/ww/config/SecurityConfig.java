@@ -1,5 +1,6 @@
 package com.our.ww.config;
 
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -11,12 +12,14 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
-@EnableWebSecurity(debug=true)
+//@EnableWebSecurity(debug=true)
 public class SecurityConfig {
 	@Bean
 	SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 		http
 			.authorizeHttpRequests((authorize) -> authorize
+				.requestMatchers("/*").permitAll()
+				.requestMatchers(PathRequest.toH2Console()).permitAll()
 				.anyRequest().authenticated()
 			)
 			.httpBasic(Customizer.withDefaults())
